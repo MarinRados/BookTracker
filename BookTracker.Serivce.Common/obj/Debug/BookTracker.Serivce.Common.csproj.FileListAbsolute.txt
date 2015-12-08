@@ -1,0 +1,4 @@
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Serivce.Common\bin\Debug\BookTracker.Serivce.Common.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Serivce.Common\bin\Debug\BookTracker.Serivce.Common.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Serivce.Common\obj\Debug\BookTracker.Serivce.Common.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Serivce.Common\obj\Debug\BookTracker.Serivce.Common.pdb

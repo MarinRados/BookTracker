@@ -1,0 +1,7 @@
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\bin\Debug\BookTracker.Model.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\bin\Debug\BookTracker.Model.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\bin\Debug\BookTracker.Model.Common.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\bin\Debug\BookTracker.Model.Common.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\obj\Debug\BookTracker.Model.csprojResolveAssemblyReference.cache
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\obj\Debug\BookTracker.Model.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Model\obj\Debug\BookTracker.Model.pdb

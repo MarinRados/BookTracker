@@ -1,0 +1,4 @@
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Service\bin\Debug\BookTracker.Service.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Service\bin\Debug\BookTracker.Service.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Service\obj\Debug\BookTracker.Service.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Service\obj\Debug\BookTracker.Service.pdb
