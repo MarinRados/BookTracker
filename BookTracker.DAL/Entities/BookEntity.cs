@@ -6,7 +6,7 @@ namespace BookTracker.DAL
 {
     public class BookEntity
     {
-        public int ID { get; set; }
+        public int BookEntityID { get; set; }
         public int AuthorID { get; set; }
         public string Name { get; set; }
         public string FirstAuthor { get; set; }

@@ -39,7 +39,7 @@ namespace BookTracker.Controllers
         // GET: Book/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName");
+            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace BookTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,AuthorID,Name,FirstAuthor,LastAuthor,DateRead,Rating")] BookEntity bookEntity)
+        public ActionResult Create([Bind(Include = "BookEntityID,AuthorID,Name,FirstAuthor,LastAuthor,DateRead,Rating")] BookEntity bookEntity)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace BookTracker.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName", bookEntity.AuthorID);
+            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName", bookEntity.AuthorID);
             return View(bookEntity);
         }
 
@@ -73,7 +73,7 @@ namespace BookTracker.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName", bookEntity.AuthorID);
+            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName", bookEntity.AuthorID);
             return View(bookEntity);
         }
 
@@ -82,7 +82,7 @@ namespace BookTracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,AuthorID,Name,FirstAuthor,LastAuthor,DateRead,Rating")] BookEntity bookEntity)
+        public ActionResult Edit([Bind(Include = "BookEntityID,AuthorID,Name,FirstAuthor,LastAuthor,DateRead,Rating")] BookEntity bookEntity)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace BookTracker.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FirstName", bookEntity.AuthorID);
+            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName", bookEntity.AuthorID);
             return View(bookEntity);
         }
 

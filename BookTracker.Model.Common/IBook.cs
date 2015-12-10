@@ -6,7 +6,7 @@ namespace BookTracker.Model.Common
 {
     public interface IBook
     {
-        int ID { get; set; }
+        int BookID { get; set; }
         int AuthorID { get; set; }
         string Name { get; set; }
         string FirstAuthor { get; set; }

@@ -7,7 +7,7 @@ namespace BookTracker.Model
 {
     public class Book : IBook
     {
-        public int ID { get; set; }
+        public int BookID { get; set; }
         public int AuthorID { get; set; }
         public string Name { get; set; }
         public string FirstAuthor { get; set; }

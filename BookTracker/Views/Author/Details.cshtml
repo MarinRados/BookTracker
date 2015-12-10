@@ -25,7 +25,29 @@
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
-
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Your books by this author</th>
+                    <th>Date Read</th>
+                    <th>Rating</th>
+                </tr>
+                @foreach (var item in Model.Books)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateRead)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rating)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
     </dl>
 </div>
 <p>
