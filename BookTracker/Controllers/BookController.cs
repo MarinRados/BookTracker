@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookTracker.DAL;
+using PagedList;
 
 namespace BookTracker.Controllers
 {
@@ -15,10 +16,65 @@ namespace BookTracker.Controllers
         private BookContext db = new BookContext();
 
         // GET: Book
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.AuthorSortParm = sortOrder == "author" ? "author_desc" : "author";
+            ViewBag.DateSortParm = sortOrder == "date" ? "date_desc" : "date";
+            ViewBag.RatingSortParm = sortOrder == "rating" ? "rating_desc" : "rating";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var books = db.Books.Include(b => b.Author);
-            return View(books.ToList());
+            books = from s in db.Books select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Name.Contains(searchString)
+                               || s.Author.FirstName.Contains(searchString)
+                               || s.Author.LastName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    books = books.OrderByDescending(s => s.Name);
+                    break;
+                case "author":
+                    books = books.OrderBy(s => s.Author.LastName);
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(s => s.Author.LastName);
+                    break;
+                case "date":
+                    books = books.OrderBy(s => s.DateRead);
+                    break;
+                case "date_desc":
+                    books = books.OrderByDescending(s => s.DateRead);
+                    break;
+                case "rating":
+                    books = books.OrderBy(s => s.Rating);
+                    break;
+                case "rating_desc":
+                    books = books.OrderByDescending(s => s.Rating);
+                    break;
+                default:
+                    books = books.OrderBy(s => s.Name);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(books.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Book/Details/5
@@ -39,7 +95,7 @@ namespace BookTracker.Controllers
         // GET: Book/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName");
+            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FullName");
             return View();
         }
 
@@ -50,14 +106,20 @@ namespace BookTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BookEntityID,AuthorID,Name,FirstAuthor,LastAuthor,DateRead,Rating")] BookEntity bookEntity)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Books.Add(bookEntity);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Books.Add(bookEntity);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName", bookEntity.AuthorID);
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again.");
+            }
             return View(bookEntity);
         }
 
@@ -73,50 +135,73 @@ namespace BookTracker.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName", bookEntity.AuthorID);
+            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "FullName", bookEntity.AuthorID);
             return View(bookEntity);
         }
 
         // POST: Book/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookEntityID,AuthorID,Name,FirstAuthor,LastAuthor,DateRead,Rating")] BookEntity bookEntity)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(bookEntity).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.AuthorID = new SelectList(db.Authors, "ID", "LastName", bookEntity.AuthorID);
-            return View(bookEntity);
-        }
-
-        // GET: Book/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookEntity bookEntity = db.Books.Find(id);
-            if (bookEntity == null)
+            var bookToUpdate = db.Books.Find(id);
+            if (TryUpdateModel(bookToUpdate, "", new string[] { "AuthorID","Name","DateRead","Rating" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again.");
+                }
+            }
+            return View(bookToUpdate);
+        }
+
+        // GET: Book/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again.";
+            }
+            BookEntity book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(bookEntity);
+            return View(book);
         }
 
         // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            BookEntity bookEntity = db.Books.Find(id);
-            db.Books.Remove(bookEntity);
-            db.SaveChanges();
+            try
+            {
+                BookEntity book = db.Books.Find(id);
+                db.Books.Remove(book);
+                db.SaveChanges();
+            }
+            catch (DataException/* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 

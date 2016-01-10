@@ -1,30 +1,38 @@
-﻿@model IEnumerable<BookTracker.DAL.BookEntity>
+﻿@model PagedList.IPagedList<BookTracker.DAL.BookEntity>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Books";
 }
 
-<h2>Index</h2>
+<h2>Books</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstAuthor)
+            @Html.ActionLink("Author", "Index", new { sortOrder = ViewBag.AuthorSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastAuthor)
+            @Html.ActionLink("Date read", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateRead)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
+            @Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -35,10 +43,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastAuthor)
+            @Html.DisplayFor(modelItem => item.Author.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateRead)
@@ -55,3 +60,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

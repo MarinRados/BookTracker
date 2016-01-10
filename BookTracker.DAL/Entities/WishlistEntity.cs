@@ -10,6 +10,6 @@ namespace BookTracker.DAL
         public string WishName { get; set; }
         public string WishFirstAuthor { get; set; }
         public string WishLastAuthor { get; set; }
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
     }
 }

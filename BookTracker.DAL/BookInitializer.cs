@@ -24,14 +24,14 @@ namespace BookTracker.DAL
 
             var books = new List<BookEntity>
             {
-                new BookEntity{Name="Harry Potter and the Philosopher's Stone", FirstAuthor="J.K.", LastAuthor="Rowling", DateRead=DateTime.Parse("2010-09-04"), Rating=8, AuthorID=1},
-                new BookEntity{Name="Harry Potter and the Chamber of Secrets", FirstAuthor="J.K.", LastAuthor="Rowling", DateRead=DateTime.Parse("2010-11-12"), Rating=9,AuthorID=1},
-                new BookEntity{Name="The Da Vinci Code", FirstAuthor="Dan", LastAuthor="Brown", DateRead=DateTime.Parse("2008-05-01"), Rating=7, AuthorID=2},
-                new BookEntity{Name="Inferno", FirstAuthor="Dan", LastAuthor="Brown", DateRead=null, Rating=null, AuthorID=2 },
-                new BookEntity{Name="The Hobbit", FirstAuthor="J.R.R.", LastAuthor="Tolkien", DateRead=DateTime.Parse("2006-06-22"), Rating=10, AuthorID=3},
-                new BookEntity{Name="Dr.No", FirstAuthor="Ian", LastAuthor="Fleming", DateRead=DateTime.Parse("2010-03-24"), Rating=6, AuthorID=4},
-                new BookEntity{Name="Casino Royale", FirstAuthor="Ian", LastAuthor="Fleming", DateRead=null, Rating=null, AuthorID=4 },
-                new BookEntity{Name="Hamlet", FirstAuthor="William", LastAuthor="Shakespeare", DateRead=DateTime.Parse("2007-10-13"), Rating=8, AuthorID=5 }
+                new BookEntity{Name="Harry Potter and the Philosopher's Stone", DateRead=DateTime.Parse("2010-09-04"), Rating=8, AuthorID=1},
+                new BookEntity{Name="Harry Potter and the Chamber of Secrets",  DateRead=DateTime.Parse("2010-11-12"), Rating=9,AuthorID=1},
+                new BookEntity{Name="The Da Vinci Code", DateRead=DateTime.Parse("2008-05-01"), Rating=7, AuthorID=2},
+                new BookEntity{Name="Inferno", DateRead=null, Rating=null, AuthorID=2 },
+                new BookEntity{Name="The Hobbit", DateRead=DateTime.Parse("2006-06-22"), Rating=10, AuthorID=3},
+                new BookEntity{Name="Dr.No", DateRead=DateTime.Parse("2010-03-24"), Rating=6, AuthorID=4},
+                new BookEntity{Name="Casino Royale", DateRead=null, Rating=null, AuthorID=4 },
+                new BookEntity{Name="Hamlet", DateRead=DateTime.Parse("2007-10-13"), Rating=8, AuthorID=5 }
             };
             books.ForEach(s => context.Books.Add(s));
             context.SaveChanges();

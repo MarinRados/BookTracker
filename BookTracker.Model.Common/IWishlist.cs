@@ -10,6 +10,6 @@ namespace BookTracker.Model.Common
         string WishName { get; set; }
         string WishFirstAuthor { get; set; }
         string WishLastAuthor { get; set; }
-        decimal Price { get; set; }
+        decimal? Price { get; set; }
     }
 }

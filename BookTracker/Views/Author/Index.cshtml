@@ -1,21 +1,32 @@
-﻿@model IEnumerable<BookTracker.DAL.AuthorEntity>
+﻿@model PagedList.IPagedList<BookTracker.DAL.AuthorEntity>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Authors";
 }
 
-<h2>Index</h2>
+<h2>Authors</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.ActionLink("First name", "Index", new { sortOrder = ViewBag.FirstSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last name", "Index", new { sortOrder = ViewBag.LastSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -37,3 +48,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

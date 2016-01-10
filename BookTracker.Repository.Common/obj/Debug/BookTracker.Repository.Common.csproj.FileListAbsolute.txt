@@ -5,3 +5,9 @@ C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Rep
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\obj\Debug\BookTracker.Repository.Common.csprojResolveAssemblyReference.cache
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\obj\Debug\BookTracker.Repository.Common.dll
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\obj\Debug\BookTracker.Repository.Common.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\bin\Debug\BookTracker.Model.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\bin\Debug\BookTracker.Model.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\bin\Debug\BookTracker.DAL.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\bin\Debug\EntityFramework.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\bin\Debug\BookTracker.DAL.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository.Common\bin\Debug\EntityFramework.xml

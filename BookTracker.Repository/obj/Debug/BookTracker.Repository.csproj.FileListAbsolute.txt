@@ -13,3 +13,6 @@ C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Rep
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository\obj\Debug\BookTracker.Repository.csprojResolveAssemblyReference.cache
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository\obj\Debug\BookTracker.Repository.dll
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository\obj\Debug\BookTracker.Repository.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository\bin\Debug\BookTracker.Repository.dll.config
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker.Repository\bin\Debug\EntityFramework.SqlServer.xml

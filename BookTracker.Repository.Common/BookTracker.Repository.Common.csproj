@@ -42,9 +42,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookTracker.DAL\BookTracker.DAL.csproj">
+      <Project>{d8ea1cae-e997-4c8b-8029-b8069628722a}</Project>
+      <Name>BookTracker.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookTracker.Model.Common\BookTracker.Model.Common.csproj">
       <Project>{4d21a9f2-cb76-4931-8f40-a160ab626d37}</Project>
       <Name>BookTracker.Model.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookTracker.Model\BookTracker.Model.csproj">
+      <Project>{e677e0cc-b95f-4b4f-bc10-d2c6128fd275}</Project>
+      <Name>BookTracker.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

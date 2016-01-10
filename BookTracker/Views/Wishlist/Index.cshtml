@@ -1,27 +1,38 @@
-﻿@model IEnumerable<BookTracker.DAL.WishlistEntity>
+﻿@model PagedList.IPagedList<BookTracker.DAL.WishlistEntity>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Wishlist";
 }
 
-<h2>Index</h2>
+<h2>Wishlist</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.WishName)
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.WishSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WishFirstAuthor)
+            @Html.ActionLink("First name", "Index", new { sortOrder = ViewBag.FirstASortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WishLastAuthor)
+            @Html.ActionLink("Last name", "Index", new { sortOrder = ViewBag.LastASortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -49,3 +60,8 @@
 }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

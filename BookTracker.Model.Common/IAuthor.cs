@@ -9,6 +9,7 @@ namespace BookTracker.Model.Common
         int ID { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
+        string FullName { get;}
 
         ICollection<IBook> Books { get; set; }
     }
