@@ -38,3 +38,7 @@ C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\PagedList.Mvc.dll
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\PagedList.xml
 C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\PagedList.Mvc.xml
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\BookTracker.Repository.Common.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\BookTracker.Repository.dll
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\BookTracker.Repository.Common.pdb
+C:\Users\Marin\Documents\Visual Studio 2013\Projects\BookTracker\BookTracker\bin\BookTracker.Repository.pdb

@@ -214,6 +214,14 @@
       <Project>{e677e0cc-b95f-4b4f-bc10-d2c6128fd275}</Project>
       <Name>BookTracker.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookTracker.Repository.Common\BookTracker.Repository.Common.csproj">
+      <Project>{038d59ab-49db-4f37-ab61-445c8c6dc73d}</Project>
+      <Name>BookTracker.Repository.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookTracker.Repository\BookTracker.Repository.csproj">
+      <Project>{56558033-4be8-47ae-a2d4-0773c728c3b7}</Project>
+      <Name>BookTracker.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
